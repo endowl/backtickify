@@ -1,0 +1,29 @@
+{
+  "name": "backtickify",
+  "version": "0.1.0",
+  "description": "A templating system based on javascript's built-in backtick templating",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/endowl/backtickify.git"
+  },
+  "author": "Ken Hodler (@bgok)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/endowl/backtickify/issues"
+  },
+  "homepage": "https://github.com/endowl/backtickify#README.md",
+  "main": "./main.js",
+  "exports": {
+    ".": "./src/Templatize.js",
+    "./dataStore": "./src/dataStore.js",
+    "./helpers": "./src/helpers.js",
+    "./Templatize":"./src/Templatize.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
