@@ -25,4 +25,3 @@ export const listOfItems = defaultValue => v => {
 }
 
 export const each = template => v => v.map(w => isFunction(template) ? template(w) : template).join('\n\n')
-export const byValue = values => v => values[v]

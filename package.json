@@ -1,5 +1,5 @@
 {
-  "name": "backtickify",
+  "name": "@endowl/backtickify",
   "version": "0.1.0",
   "description": "A templating system based on javascript's built-in backtick templating",
   "scripts": {
@@ -20,10 +20,11 @@
     ".": "./src/Templatize.js",
     "./dataStore": "./src/dataStore.js",
     "./helpers": "./src/helpers.js",
-    "./Templatize":"./src/Templatize.js"
+    "./Templatize": "./src/Templatize.js"
   },
   "type": "module",
   "dependencies": {
     "lodash": "^4.17.21"
-  }
+  },
+  "devDependencies": {}
 }

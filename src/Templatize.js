@@ -11,7 +11,6 @@ export default (strings, ...keys) => templates => values => {
     const dict = values ?? {}
     const subTemps = templates ?? {}
     const result = keys.map((key, i) => {
-        // const v = key === '.' ? dict : get(dict, key)
         let v;
         if (key === '.') {
             v = dict
@@ -20,13 +19,14 @@ export default (strings, ...keys) => templates => values => {
         } else {
             v = get(dict, key)
         }
-        console.log(key, v)
         if (v) {
             if (subTemps[key]) {
-                if (isFunction(subTemps[key])) {
+                if (isFunction(subTemps[key])) { // Execute a formatter function
                     return subTemps[key](isObject(v) ? v : {[key]: v})
-                } else if (isString(subTemps[key])) {
+                } else if (isString(subTemps[key])) { // Display a fixed value
                     return subTemps[key]
+                } else if (isObject(subTemps[key])) { // Look up the displayed value
+                    return subTemps[key][v]
                 } else {
                     throw('unknown template type')
                 }
