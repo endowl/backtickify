@@ -48,4 +48,4 @@ const bind = (key_, template_) => {
 
 const each = template => v => v.map(w => isFunction(template) ? template(w) : template).join('\n\n')
 
-export {inlineList, parseKey, bind, each}
+export default {inlineList, parseKey, bind, each}
