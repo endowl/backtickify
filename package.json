@@ -1,6 +1,6 @@
 {
   "name": "backtickify",
-  "version": "v0.1.0-rc3",
+  "version": "v0.1.0-rc4",
   "description": "A templating system based on javascript's built-in backtick templating",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,10 +17,9 @@
   "homepage": "https://github.com/endowl/backtickify#README.md",
   "main": "./main.js",
   "exports": {
-    ".": "./src/Templatize.js",
-    "./dataStore": "./src/dataStore.js",
-    "./helpers": "./src/helpers.js",
-    "./Templatize": "./src/Templatize.js"
+    ".": "./src/Templatize.mjs",
+    "./dataStore": "./src/dataStore.mjs",
+    "./helpers": "./src/helpers.mjs"
   },
   "type": "module",
   "dependencies": {

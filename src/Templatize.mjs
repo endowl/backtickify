@@ -5,12 +5,12 @@ import isString from 'lodash/isString.js'
 import isObject from 'lodash/isObject.js'
 import flattenDeep from 'lodash/flattenDeep.js'
 import zip from 'lodash/zip.js'
-import {get as rootGet}  from './dataStore.js'
-import {parseKey} from "./helpers.js"
+import {get as rootGet}  from './dataStore.mjs'
+import {parseKey} from "./helpers.mjs"
 
 export default (strings, ...keys) => values => {
     const _values = values ?? {}
-    const result = keys.map((key_, i) => {
+    const result = keys.map((key_) => {
         let _v;
         if (isFunction(key_) || key_ === '.') {
             _v = _values
@@ -19,6 +19,8 @@ export default (strings, ...keys) => values => {
 
             if (_useRoot) {
                 _v = rootGet(_k)
+            } else if (_useThis) {
+                _v = _values
             } else {
                 _v = get(_values, key_)
             }

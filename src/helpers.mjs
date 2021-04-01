@@ -1,5 +1,5 @@
 import isFunction from 'lodash/isFunction.js'
-import {get as rootGet} from "./dataStore.js";
+import {get as rootGet} from "./dataStore.mjs";
 
 export const inlineList = defaultValue => v => {
     if (!v) {

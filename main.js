@@ -1,5 +1,5 @@
-import dataStore from "./src/dataStore"
-import helpers from "./src/helpers"
-import T from "./src/Templatize"
+import dataStore from "./src/dataStore.mjs"
+import helpers from "./src/helpers.mjs"
+import T from "./src/Templatize.mjs"
 
 export default {T, helpers, dataStore}
