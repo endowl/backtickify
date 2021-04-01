@@ -4,8 +4,8 @@ import _get from "lodash/get.js";
 
 let data
 
-export const set = r => data = r
-export const get = p => _get(data, p)
-export const getById = (p, k) => get(p).find(e => e.id === k)
+const set = r => data = r
+const get = p => _get(data, p)
+const getById = (p, k) => get(p).find(e => e.id === k)
 
-export default {set, get, getById}
+export {set, get, getById}
