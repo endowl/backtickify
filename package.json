@@ -1,6 +1,6 @@
 {
   "name": "backtickify",
-  "version": "v0.1.0-rc7",
+  "version": "v0.1.0-rc8",
   "description": "A templating system based on javascript's built-in backtick templating",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,7 +18,7 @@
   "main": "./main.js",
   "exports": {
     ".": "./src/Templatize.mjs",
-    "./*": "./src/*.mjs"
+    "./src/*": "./src/*.mjs"
   },
   "type": "module",
   "dependencies": {

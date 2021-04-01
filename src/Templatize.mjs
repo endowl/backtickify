@@ -8,8 +8,8 @@ import zip from 'lodash/zip.js'
 import {get as rootGet}  from './dataStore.mjs'
 import {parseKey} from "./helpers.mjs"
 
-export default (strings, ...keys) => values => {
-    const _values = values ?? {}
+const T = (strings, ...keys) => values => {
+    const _values = values || {}
     const result = keys.map((key_) => {
         let _v;
         if (isFunction(key_) || key_ === '.') {
@@ -54,3 +54,5 @@ export default (strings, ...keys) => values => {
         .replace(/ +/g, ' ')
         .replace(/( +)?(\.)+/g, '.')
 }
+
+export default T

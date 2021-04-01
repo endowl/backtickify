@@ -1,7 +1,7 @@
 import isFunction from 'lodash/isFunction.js'
 import {get as rootGet} from "./dataStore.mjs";
 
-const inlineList = defaultValue => v => {
+export const inlineList = defaultValue => v => {
     if (!v) {
         return defaultValue || '<empty list>'
     }
@@ -25,7 +25,7 @@ const inlineList = defaultValue => v => {
     }
 }
 
-const parseKey = key_ => {
+export const parseKey = key_ => {
     let _useThis = key_.endsWith('>')
     let _useRoot = key_.startsWith('/')
     let _k = key_.slice(_useRoot ? 1 : 0, _useThis ? -1 : undefined)
@@ -35,7 +35,7 @@ const parseKey = key_ => {
     return {_useThis, _useRoot, _k};
 }
 
-const bind = (key_, template_) => {
+export const bind = (key_, template_) => {
     let {_useThis, _useRoot, _k} = parseKey(key_)
     return v_ => {
         if (!isFunction(template_)) return template_
@@ -46,6 +46,6 @@ const bind = (key_, template_) => {
     }
 }
 
-const each = template => v => v.map(w => isFunction(template) ? template(w) : template).join('\n\n')
+export const each = template => v => v.map(w => isFunction(template) ? template(w) : template).join('\n\n')
 
-export {inlineList, parseKey, bind, each}
+export default {inlineList, parseKey, bind, each}
