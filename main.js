@@ -1,5 +1,5 @@
 import dataStore from "./src/dataStore"
 import helpers from "./src/helpers"
-import Templatize from "./src/Templatize"
+import T from "./src/Templatize"
 
-export default Templatize
+export default {T, helpers, dataStore}
