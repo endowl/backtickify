@@ -1,5 +1,5 @@
 {
-  "name": "@endowl/backtickify",
+  "name": "backtickify",
   "version": "0.1.0",
   "description": "A templating system based on javascript's built-in backtick templating",
   "scripts": {
