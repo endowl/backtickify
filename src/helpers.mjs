@@ -1,5 +1,6 @@
 import isFunction from 'lodash/isFunction.js'
-import {get as rootGet} from "./dataStore.mjs";
+import isObject from 'lodash/isObject.js'
+import {get as rootGet, getById} from "./dataStore.mjs";
 
 export const inlineList = defaultValue => v => {
     if (!v) {
@@ -38,14 +39,22 @@ export const parseKey = key_ => {
 export const bind = (key_, template_) => {
     let {_useThis, _useRoot, _k} = parseKey(key_)
     return v_ => {
-        if (!isFunction(template_)) return template_
         let _v = _useRoot ? rootGet(_k) : v_
         if (!_v || !(_useRoot || _v[_k])) return '' // Value is undefined
         let scope = _useThis || _useRoot ? _v : _v[_k]
-        return template_(scope)
+        if (isFunction(template_)) {
+            return template_(scope)
+        } else if (isObject(template_)) {
+            return template_[_v]
+        } else {
+            return template_ // punt
+        }
     }
 }
 
-export const each = template => v => v.map(w => isFunction(template) ? template(w) : template).join('\n\n')
+export const bindToInlineList = (k, defaultValue) => v => inlineList(defaultValue)(v[k])
+export const bindByIdField = (key, root, template) => v => key && v[key] && template(getById(root, v[key]))
+export const bindById = (root, template) => v => template(getById(root, v))
+export const bindEach = (k, template) => bind(k, v => v.map(w => isFunction(template) ? template(w) : template).join('\n\n'))
 
-export default {inlineList, parseKey, bind, each}
+export default {parseKey, bind, bindByIdField, bindById, bindToInlineList, each: bindEach}
