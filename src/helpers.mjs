@@ -36,11 +36,11 @@ export const parseKey = key_ => {
     return {_useThis, _useRoot, _k};
 }
 
-export const bind = (key_, template_) => {
+export const bind = (key_, template_, else_) => {
     let {_useThis, _useRoot, _k} = parseKey(key_)
     return v_ => {
         let _v = _useRoot ? rootGet(_k) : v_
-        if (!_v || !(_useRoot || _v[_k])) return '' // Value is undefined
+        if (!_v || !(_useRoot || _v[_k])) return isFunction(else_) ? else_(_v) : else_
         let scope = _useThis || _useRoot ? _v : _v[_k]
         if (isFunction(template_)) {
             return template_(scope)
