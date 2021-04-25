@@ -8,31 +8,29 @@ let data
 
 function removeEmptyProps(s) {
     if (isPlainObject(s)) {
-        return Object.keys(s).reduce((acc, k) => {
-            if (isPlainObject(s[k])) {
-                const t = removeEmptyProps(s[k])
-                if (Object.keys(t).length) {
-                    acc[k] = t
-                }
-            } else if (isArray(s[k])) {
-                acc[k] = s[k].map(removeEmptyProps)
-            } else if (s[k]) {
-                acc[k] = s[k]
+        const t = Object.keys(s).reduce((acc, k) => {
+            const newVal = removeEmptyProps(s[k])
+            if (newVal) {
+                acc[k] = newVal
             }
             return acc
         }, {})
+        if (t && Object.keys(t).length) {
+            return t
+        }
+    } else if (isArray(s)) {
+        const t = s.map(removeEmptyProps)
+        if (t && t.length) {
+            return t
+        }
+    } else if (s) {
+        return s
     }
-    return s
 }
 
 export const set = r => data = removeEmptyProps(r)
 export const get = p => _get(data, p)
-export const getById = (p, k) => {
-    const result =  get(p)?.find(e => {
-        return e.id === k
-    })
-    return result
-}
+export const getById = (p, k) => get(p)?.find(e => e.id === k)
 export const rootIsSet = () => !!data
 
 export default {set, get, getById, rootIsSet}

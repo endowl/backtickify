@@ -1,6 +1,6 @@
 {
   "name": "backtickify",
-  "version": "v0.1.0-rc12",
+  "version": "v0.1.0-rc13",
   "description": "A templating system based on javascript's built-in backtick templating",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
